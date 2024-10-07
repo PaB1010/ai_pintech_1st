@@ -1,0 +1,14 @@
+.album {
+  /* px -> 모니터의 실질 크기 점 1개 */
+  width: 100px;
+  height: 100px;
+}
+
+.album > img {
+  /* album안의 자식인 img 지정 */
+  width: 100%;
+  height: 100%;
+
+  /* 원본 비율에서 벗어나지 않음 */
+  object-fit: cover;
+}

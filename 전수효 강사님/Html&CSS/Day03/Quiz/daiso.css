@@ -1,0 +1,115 @@
+@font-face {
+  font-family: "LINESeedKR-Bd";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2")
+    format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  font-family: "LINESeedKR-Bd";
+}
+
+.main2 {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+}
+.title {
+  font-size: 30px;
+  gap: 5px;
+}
+.gray {
+  color: #808080;
+}
+
+.sub {
+  font-size: 15px;
+}
+
+.album {
+  width: 200px;
+  height: 300px;
+  position: relative;
+}
+
+.album > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.a {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 200px;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.price {
+  font-size: 18px;
+}
+
+.text2 {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.new {
+  color: red;
+  border: 1px solid red;
+  width: fit-content;
+  border-radius: 6px;
+  background-color: white;
+}
+
+.cart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 99999px;
+  opacity: 50%;
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  z-index: 2;
+  background-color: red;
+}
+
+.view {
+  font-size: 12px;
+}
+
+.icon {
+  color: white;
+  font-size: large;
+}
+
+.itemlist {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}

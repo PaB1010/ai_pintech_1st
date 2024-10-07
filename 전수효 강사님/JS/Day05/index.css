@@ -1,0 +1,23 @@
+main {
+  width: 100vw;
+}
+
+.container {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.box {
+  width: 100px;
+  height: 100px;
+}
+
+.mainBox {
+  width: 400px;
+  height: 400px;
+}

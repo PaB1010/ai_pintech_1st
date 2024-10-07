@@ -1,0 +1,35 @@
+.line {
+  background-color: #06c755;
+  width: 350px;
+  border-radius: 8px;
+  color: white;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 16px;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.apple {
+  background-color: black;
+  width: 350px;
+  border-radius: 8px;
+  color: white;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 16px;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.kakao {
+  background-color: #fee500;
+  width: 350px;
+  border-radius: 8px;
+  color: #381e1f;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 16px;
+  font-weight: bold;
+  margin-bottom: 4px;
+}

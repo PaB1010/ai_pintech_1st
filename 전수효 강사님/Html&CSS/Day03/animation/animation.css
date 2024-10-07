@@ -1,0 +1,36 @@
+.text {
+  color: skyblue;
+}
+
+/* hover (마우스 커서 가져다대면 적용) */
+.text:hover {
+  background-color: pink;
+  font-size: 30px;
+}
+
+.box {
+  width: 100px;
+  height: 100px;
+  background-color: green;
+
+  /* 투명도 */
+  /* opacity: 0.5; */
+
+  /* 변형 관련
+  rotate -> 회전 (=정해진 각만큼 돌림)
+  scale -> 확대, 축소 default = 1 */
+  /* transform: rotate(45deg) scale(2); */
+
+  /* 변형시 어떻게 적용되는지 */
+  /* ex) all 1s (1초동안) */
+  transition: all 10s;
+}
+
+.box:hover {
+  transform: rotate(45deg) scale(2);
+  /* border-radius: 9999px;
+  background-color: skyblue; */
+
+  /* 투명도 0이 되어 사라지게 됨 */
+  /* opacity: 0; */
+}

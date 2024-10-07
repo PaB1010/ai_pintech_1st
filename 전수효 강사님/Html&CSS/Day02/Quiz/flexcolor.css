@@ -1,0 +1,22 @@
+.box {
+  display: flex;
+  flex-direction: row;
+  text-transform: uppercase;
+}
+
+.colorbox {
+  width: 300px;
+  height: 200px;
+}
+
+.turquoise {
+  background-color: #1abc9c;
+}
+
+.emerald {
+  background-color: #2ecc71;
+}
+
+.peterriver {
+  background-color: #3498db;
+}

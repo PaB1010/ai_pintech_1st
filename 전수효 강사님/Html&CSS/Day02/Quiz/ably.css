@@ -1,0 +1,26 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sub {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  /* align-items: start;
+  justify-content: space-evenly; */
+}
+.line {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  font-size: 10px;
+  font-weight: bold;
+  gap: 5px;
+}
+
+.medium {
+  font-size: 20px;
+}

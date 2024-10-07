@@ -1,0 +1,40 @@
+.main {
+  width: 500px;
+  height: 500px;
+  /* background-color: gray; */
+}
+
+.contents {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.album {
+  width: 200px;
+  height: 300px;
+}
+
+.album > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.text {
+  color: #c3c4c3;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.one {
+  font-size: 20px;
+}
+
+.a {
+  color: #ff7d7d;
+}
+
+.b {
+  color: black;
+}

@@ -1,0 +1,22 @@
+.one {
+  width: 100vw;
+  height: 100vh;
+  background-color: pink;
+}
+
+.contents {
+  width: 100%;
+
+  /* 최대 넓이 1000px 리미트, 국룰 1200px */
+  max-width: 1200px;
+
+  height: 100px;
+
+  /* auto = 중앙화! */
+  margin: 0 auto;
+
+  /* 2개만 쓰면 위아래 10px 좌우 20px
+  padding : 10px 20px;*/
+
+  background-color: skyblue;
+}

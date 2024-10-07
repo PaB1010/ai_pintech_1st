@@ -1,0 +1,60 @@
+.palette {
+  display: flex;
+  flex-direction: column;
+}
+
+.box {
+  display: flex;
+  flex-direction: row;
+  text-transform: uppercase;
+  text-align: right;
+  color: white;
+}
+
+.colorbox {
+  width: 300px;
+  height: 200px;
+
+  display: flex;
+  flex-direction: row;
+
+  align-items: end;
+
+  justify-content: end;
+}
+
+.turquoise {
+  background-color: #1abc9c;
+}
+
+.emerald {
+  background-color: #2ecc71;
+}
+
+.peterriver {
+  background-color: #3498db;
+}
+
+.greensea {
+  background-color: #16a085;
+}
+
+.nephritis {
+  background-color: #27ae60;
+}
+
+.belizehole {
+  background-color: #2980b9;
+}
+
+.sunflower {
+  background-color: #f1c40f;
+}
+
+.carrot {
+  background-color: #e67e22;
+}
+
+.arizarin {
+  background-color: #e74c3c;
+}

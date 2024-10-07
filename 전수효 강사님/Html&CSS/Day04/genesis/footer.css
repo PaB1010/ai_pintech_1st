@@ -1,0 +1,111 @@
+.footer {
+  width: 100vw;
+  height: 1000px;
+  background-color: black;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.foot__article {
+  width: 100%;
+  height: 80%;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  /* background-color: skyblue; */
+
+  color: white;
+
+  display: flex;
+  flex-direction: column;
+  gap: 300px;
+}
+.exp {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  gap: 20px;
+}
+.exp > h1 {
+  font-size: 40px;
+}
+
+.exp > h4 {
+  font-size: 20px;
+}
+
+.exp > .all {
+  border-bottom: 1px solid white;
+  width: 300px;
+}
+
+.all:hover {
+  cursor: pointer;
+}
+
+.carList {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+
+  width: 100%;
+}
+
+.carItem {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  width: fit-content;
+
+  transition: all 1s;
+
+  /* background-color: skyblue; */
+}
+
+.carItem:hover {
+  border: 1px solid gray;
+}
+
+.album {
+  width: 500px;
+  height: 150px;
+}
+
+.album > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.carText {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.carText > h4 {
+  font-size: 30px;
+  font-weight: 200;
+  color: lightgray;
+  transition: all 0.5s;
+}
+
+.carText > h4:hover {
+  color: white;
+}
+
+.carText > h6 {
+  font-size: 20px;
+  font-weight: 150;
+  border: 1px solid white;
+  padding: 2px;
+  margin-top: 10px;
+  margin-right: 10px;
+}

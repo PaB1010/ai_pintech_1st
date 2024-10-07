@@ -1,0 +1,35 @@
+.main {
+  /* 자식에게 핏하게 width 영역 결정 */
+  width: fit-content;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 20px 40px 20px 40px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.line {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.content {
+  width: 100px;
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 20px;
+  cursor: pointer;
+}
+
+.medium {
+  font-size: 30px;
+}

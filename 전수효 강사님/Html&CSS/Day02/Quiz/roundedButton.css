@@ -1,0 +1,35 @@
+.a {
+  background-color: gray;
+  border-radius: 3px;
+  width: 300px;
+  border: 1px solid lightgray;
+  padding: 0px 10px 0px 10px;
+  /* 12시부터 시계 방향 순서 */
+}
+
+.b {
+  background-color: white;
+  text-align: center;
+  padding-bottom: 5px;
+  padding-top: 5px;
+}
+
+button {
+  background-color: lightgray;
+  border-radius: 3px;
+  border-style: hidden;
+  text-align: center;
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer;
+  /* font-family: fantasy; */
+  line-height: 20px;
+  /* 행간 (=줄간격) */
+  /* text-transform: uppercase;
+  글 모양 변경, 대문자(uppercase) */
+  /* word-spacing: 20px;
+  자간 (=글자 사이 간격) */
+  /* box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset; */
+}

@@ -1,0 +1,48 @@
+.header {
+  width: 100vw;
+  height: 69px;
+  background-color: black;
+
+  position: fixed;
+}
+
+.nav {
+  width: 100%;
+  max-width: 1600px;
+  height: 100%;
+  margin: 0 auto;
+
+  /* background-color: pink; */
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo > img {
+  width: 80%;
+  height: 80%;
+  object-fit: center;
+}
+
+.links > li {
+  color: gray;
+  font-size: 15px;
+}
+
+.links > li:hover {
+  color: white;
+  cursor: pointer;
+}
+
+.links {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 45px;
+}
+
+.logo {
+  cursor: pointer;
+}

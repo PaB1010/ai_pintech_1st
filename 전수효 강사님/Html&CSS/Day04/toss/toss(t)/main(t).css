@@ -1,0 +1,79 @@
+@import url("https://static.toss.im/tps/main.css");
+@import url("https://static.toss.im/tps/others.css");
+
+* {
+  font-family: "Toss Product Sans";
+}
+
+.main {
+  width: 100vw;
+  height: 100vh;
+  background-image: url("https://static.toss.im/assets/homepage/newtossim/new_main.png");
+  background-size: cover;
+}
+
+.centeredBox {
+  width: 100vw;
+  max-width: 1040px;
+  margin: 0 auto;
+  padding-top: 150px;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 100px;
+  text-align: center;
+}
+
+.motto {
+  font-size: 66px;
+  font-weight: 700;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin-top: 200px;
+}
+
+.download {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+
+.download > button {
+  font-size: 17px;
+  font-weight: 500;
+
+  background-color: #2d3848;
+  opacity: 90%;
+  color: white;
+  padding: 11px 22px;
+  border-radius: 10px;
+  border: none;
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  align-items: center;
+  transition: all 0.3s;
+}
+
+.download > button:hover {
+  background-color: rgb(78, 89, 104);
+}
+
+.whiteBlur {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 250px;
+  background: linear-gradient(
+    180deg,
+    white 0%,
+    white 59px,
+    rgba(255, 255, 255, 0) 100%
+  );
+}

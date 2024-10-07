@@ -1,0 +1,71 @@
+.main {
+  width: 100vw;
+  height: 100vh;
+  background-image: url("g-background.jpg");
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  cursor: grab;
+}
+
+.article {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
+
+  /* background-color: pink; */
+}
+
+.contents {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 500px;
+  color: white;
+  font-weight: 600;
+  font-size: 20px;
+}
+.mainText > h1 {
+  font-size: 60px;
+}
+
+.contents > subText {
+  font-size: 15px;
+}
+
+.subText {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.subText > h5:hover {
+  transition: all 0.2s;
+  border-bottom: 1px solid white;
+  cursor: pointer;
+  padding-bottom: 10px;
+}
+
+.mainText {
+  gap: 40px;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat {
+  background-color: white;
+  border-radius: 99999px;
+  width: 80px;
+  height: 80px;
+
+  position: fixed;
+  right: 50px;
+  bottom: 50px;
+
+  z-index: 3;
+}

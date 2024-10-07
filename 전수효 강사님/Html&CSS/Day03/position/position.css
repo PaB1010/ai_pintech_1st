@@ -1,0 +1,95 @@
+/* 페이지(도화지) 전체에 영향 */
+body {
+  height: 300vh;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.up {
+  display: flex;
+  flex-direction: row;
+}
+
+.down {
+  display: flex;
+  flex-direction: row;
+}
+
+.box {
+  width: 300px;
+  height: 300px;
+}
+
+.pink {
+  background-color: pink;
+}
+
+.skyblue {
+  background-color: skyblue;
+}
+
+.orange {
+  background-color: orange;
+}
+
+.lemon {
+  background-color: lemonchiffon;
+}
+
+.move {
+  /* position - top, bottom, right, left  */
+
+  /* 상대적 (지금위치) */
+  position: relative;
+
+  /* 위에서 100px 떨어짐 */
+  top: 100px;
+
+  /* 왼쪽에서 100px 떨어짐 */
+  left: 300px;
+}
+
+.move1 {
+  position: relative;
+  left: 300px;
+  bottom: 300px;
+}
+
+.move2 {
+  /* 절대적 (크롬 부라우저 기준) */
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.move3 {
+  /* 고정적 (=시야에 고정, ex)배너, 팝업) */
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  /* z축 조정 (숫자가 클수록 위 ex)맨앞으로 기능) */
+  z-index: 2;
+}
+
+.test {
+  position: relative;
+  top: 100px;
+  left: 100px;
+  background-color: gray;
+  z-index: 3;
+}
+
+.test1 {
+  /* absolute (단! 자기 조상/부모가 position 없어야 함) */
+  /* 부모가 position 있으면 그걸로 절대 기준이 변경됨 */
+  position: absolute;
+  top: 10px;
+  left: 10px;
+
+  /* 부모가 자식의 z축보다 높게 있을 수 없기때문에 먹히지 않음! */
+  z-index: 1;
+}

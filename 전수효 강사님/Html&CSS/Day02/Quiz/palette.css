@@ -1,0 +1,20 @@
+.main {
+  font-weight: bold;
+  font-size: 6px;
+}
+
+.box {
+  border-radius: 5px;
+  border-style: hidden;
+  padding: 10px;
+  /* 동서남북 방향 값이 같아 10px;으로 요약 가능 */
+  height: 40px;
+  font-size: 8px;
+  text-align: center;
+  font-weight: 500px;
+  font-family: fantasy;
+}
+
+.w {
+  color: white;
+}
