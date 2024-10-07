@@ -3,3 +3,5 @@ public class Hello {
         System.out.println("Hello, Java!");
     }
 }
+
+// github 테스트용으로 추가한 코드!
