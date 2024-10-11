@@ -23,7 +23,7 @@ public class Ex02 {
 
         int y = x * 2 + 3;
 
-        //y를 외부로 보내고 함수 종료
+        //y를 외부로 보내고 역할을 다해 함수 종료 (return)
         return y;
     }
 }
