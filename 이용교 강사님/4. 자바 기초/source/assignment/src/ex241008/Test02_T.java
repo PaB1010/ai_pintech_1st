@@ -2,13 +2,17 @@
 // 리조트는 방이 10개 있고 방번호는 0~9번까지 있습니다,
 // 40명의 학생이 각각 번호표를 받아 한 방에 4명씩 배정하여 다음과 같이 출력하시오(예 : 학생1, 방번호 1번)
 
+// 균등 배분 (나머지 연산자 % 응용)
+
 package ex241008;
 
-public class Test02 {
+public class Test02_T {
     public static void main(String[] args) {
-        for (int i = 0; i < 40; i++) {
-            //System.out.println("학생" + (i + 1) + ", 방번호" + (i / 4) +"번");
-            System.out.printf("학생%d, 방번호 %d번%n", i + 1, i / 4);
+
+        for (int i = 1; i <= 40; i++) {
+
+            int roomNo = i % 10; // % 의 반복성으로 0~9 반복
+            System.out.printf("학생%d, 방번호 %d번%n", i, roomNo );
         }
     }
 }

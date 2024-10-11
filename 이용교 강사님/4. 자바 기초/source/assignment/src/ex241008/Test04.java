@@ -1,3 +1,5 @@
+// 구구단을 홀수 단만 출력하도록 프로그램을 만드시오. 구현 소스
+
 package ex241008;
 
 public class Test04 {
