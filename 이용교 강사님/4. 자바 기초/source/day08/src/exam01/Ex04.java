@@ -1,4 +1,4 @@
-// ㅇ
+// AutoClseable
 
 package exam01;
 

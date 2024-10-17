@@ -1,4 +1,4 @@
-// AutoCloseable 불가능한 클래스 예제
+//// AutoCloseable 불가능한 클래스 예제
 //
 //package exam01;
 //
