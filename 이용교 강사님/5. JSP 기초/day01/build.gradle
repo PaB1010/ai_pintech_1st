@@ -1,0 +1,30 @@
+plugins {
+    id 'java'
+}
+
+group = 'org.koreait'
+version = '1.0-SNAPSHOT'
+// rootProject.name = 'day01'와 함께 파일명 기준
+// build.libs.day01-1.0-SNAPSHOT.jar
+
+// 람다식 함수
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // 외부 라이브러리에서 확인 가능
+    // 의존성의 의존성까지 일괄 추가해줌
+
+    // 임의로 lombok 추가(annotation)
+    compileOnly 'org.projectlombok:lombok:1.18.34'
+    // annotation 기반은 사용하려면 아래 함수 추가 필수
+    annotationProcessor 'org.projectlombok:lombok:1.18.34'
+
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+test {
+    useJUnitPlatform()
+}
