@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Context docBase="D:/fintech_김시원/이용교 강사님/5. JSP 기초/servlet_jsp/src/main/webapp">
+  <Resources cacheMaxSize="10240">
+    <PreResources base="D:/fintech_김시원/이용교 강사님/5. JSP 기초/servlet_jsp/out/production/classes" className="org.apache.catalina.webresources.DirResourceSet" webAppMount="/WEB-INF/classes"/>
+  </Resources>
+</Context>
