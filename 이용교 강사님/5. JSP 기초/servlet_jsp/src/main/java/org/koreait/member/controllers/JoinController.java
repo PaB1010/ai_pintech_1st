@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Arrays;
 
 // 추상 메서드 Servlet 상속
 public class JoinController extends HttpServlet {
@@ -56,6 +57,14 @@ public class JoinController extends HttpServlet {
         out.write("비밀번호 : <input type='password' name='password'><br>");
         out.write("비밀번호 확인 : <input type='password' name='confirmPassword'><br>");
         out.write("회원명 : <input type='text' name='userName'><br>");
+
+        // formTag : check box = 여러개중 여러개 입력 받기 적합
+        out.write("취미 : <label><input type='checkbox' name='hobby' value='취미1'>취미1</label>");
+        out.write("<label><input type='checkbox' name='hobby' value='취미2'>취미2</label>");
+        out.write("<label><input type='checkbox' name='hobby' value='취미3'>취미3</label>");
+        out.write("<label><input type='checkbox' name='hobby' value='취미4'>취미4</label>");
+        out.write("<label><input type='checkbox' name='hobby' value='취미5'>취미5</label><br>");
+
         out.write("<button type='submit'>가입하기</button>");
         out.write("</form>");
     }
@@ -64,5 +73,25 @@ public class JoinController extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        // Servlet 4버전까지는 인코딩 처리 필수
+        // 기본 인코딩이 IS08859_1 - 2바이트 유니코드
+        // Servlet 6버전부터는 기본 인코딩 UTF-8이라 생략 가능
+        // req.setCharacterEncoding("UTF-8");
+
+        String email = req.getParameter("email");
+        String password = req.getParameter("password");
+        String confirmPassword = req.getParameter("confirmPassword");
+        String userName = req.getParameter("userName");
+
+        // getParameter = hobby로 요청한 값이 여러개더라도 처음 1개만 출력
+        String hobby = req.getParameter("hobby");
+        // 취미 1
+
+        System.out.printf("email : %s / password : %s / confirmPassword : %s / username : %s / hobby : %s%n", email, password, confirmPassword, userName, hobby);
+
+        // hobby라는 이름은 여러개의 데이터이므로 배열로 가져옴
+        String[] hobbies = req.getParameterValues("hobby");
+        System.out.println(Arrays.toString(hobbies));
+        // [취미1, 취미2, 취미3, 취미4, 취미5]
     }
 }
