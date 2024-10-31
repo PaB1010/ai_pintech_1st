@@ -54,10 +54,6 @@ public class JoinController extends HttpServlet {
         // input = Name & Value
         // 지금은 Value값 입력 없이 Name만 입력
         out.write("이메일 : <input type='text' name='email'><br>");
-
-        // 이러면 바로 value값 설정됨
-        // out.write("이메일 : <input type='text' name='email' value='아이디@naver.com'><br>");
-
         out.write("비밀번호 : <input type='password' name='password'><br>");
         out.write("비밀번호 확인 : <input type='password' name='confirmPassword'><br>");
         out.write("회원명 : <input type='text' name='userName'><br>");

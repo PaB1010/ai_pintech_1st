@@ -14,6 +14,7 @@ repositories {
 }
 
 dependencies {
+
     compileOnly 'jakarta.servlet:jakarta.servlet-api:6.1.0'
     compileOnly 'jakarta.servlet.jsp:jakarta.servlet.jsp-api:4.0.0'
 
@@ -23,6 +24,8 @@ dependencies {
     // glassfish 추가
     implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl:3.0.1'
 
+    // lombok 추가
+    compileOnly 'org.projectlombok:lombok:1.18.34'
 
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
