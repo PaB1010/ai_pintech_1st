@@ -4,6 +4,7 @@ package org.koriait.member.services;
 
 import org.koriait.global.validators.Validator;
 import org.koriait.member.controllers.RequestJoin;
+import org.koriait.member.repositories.MemberRepository;
 import org.koriait.member.validators.JoinValidator;
 
 // 회원 가입 기능
@@ -21,7 +22,13 @@ public class JoinService {
 
     // 구성! = 확장에 열린 구조
     // 구성 방법 1. setter 2. 생성자 매개 변수
-    private Validator<RequestJoin> validator;
+    // private Validator<RequestJoin> validator;
+
+    private final Validator<RequestJoin> validator;
+    // 만약 final로 선언시 무조건 한번 초기화해야하기때문에 더더욱 의존관계로 확정
+
+    private final MemberRepository repository;
+
 
     /*
     setter로 주입해 구성
@@ -30,8 +37,8 @@ public class JoinService {
     JoinService 객체를 생성할때 joinValidator가 필수는 아니기때문
     @param joinValidator
 
-    public void setValidator(Validator<RequestJoin> joinValidator) {
-        this.joinValidator = joinValidator;
+    public void setValidator(Validator<RequestJoin> validator) {
+        this.validator = validator;
     }
      */
 
@@ -43,13 +50,14 @@ public class JoinService {
     JoinService 객체를 생성을 위해서는 joinValidator가 필수로 주입되어야하기때문
      */
 
-    public JoinService(Validator<RequestJoin> joinValidator) {
-        this.validator = joinValidator;
+    public JoinService(Validator<RequestJoin> validator, MemberRepository repository) {
+        this.validator = validator;
+        this.repository = repository;
     }
 
 
     /*
-    가입 처리
+    가입 처리 & 연관 관계
 
     RequestJoin - DTO (Data Transfer Object)
     -> 사용자가 입력한 값을 전달하는 역할
@@ -62,5 +70,9 @@ public class JoinService {
     public void process(RequestJoin form) {
 
 
+        // form & joinService에 서로 영향을 주고 받는 관계
+        // -> 변화에 영향을 받음
+        // 즉 통제가 필요 - 메서드 안에 감출 필요(캡슐화) / 변화에 닫힌 구조
+        validator.check(form);
     }
 }
