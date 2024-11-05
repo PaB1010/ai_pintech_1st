@@ -15,6 +15,7 @@ import java.time.format.DateTimeFormatter;
 @Configuration
 public class AppCtx3 {
 
+    /*
     @Bean
     public JoinValidator joinValidator() {
         return new JoinValidator();
@@ -26,13 +27,11 @@ public class AppCtx3 {
         return new MemberRepository();
     }
 
-    /*
     @Bean
     @Qualifier("mRepo2")
     public MemberRepository memberRepository2() {
         return new MemberRepository();
     }
-     */
 
     // 의존성 해결 안하고 자동으로 주입(Autowired) 해보기
     @Bean
@@ -45,6 +44,8 @@ public class AppCtx3 {
     public MemberInfoService memberInfoService() {
         return new MemberInfoService();
     }
+
+    */
 
     // @Bean
     public DateTimeFormatter formatter() {

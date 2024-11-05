@@ -7,12 +7,17 @@ import org.koreait.member.repositories.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.lang.Nullable;
+import org.springframework.stereotype.Service;
 
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class MemberInfoService {
+    // MemberInfoService BeanName = memberInfoService
+    // Class명이 기준!!!
+
 
     // 조회를 위해 MemberRepository를 의존(필요)
     private MemberRepository repository;
@@ -24,7 +29,7 @@ public class MemberInfoService {
     @Autowired
     // setter로 연관 관계
     // 대입해주고 호출(set)하는 단계를 거침
-    public void setRepository(/*@Qualifier("mRepo2")MemberRepository repository) //{
+    public void setRepository(@Qualifier("mRepo2")MemberRepository repository) //{
         // 의존성 주입
       this.repository = repository;
     }

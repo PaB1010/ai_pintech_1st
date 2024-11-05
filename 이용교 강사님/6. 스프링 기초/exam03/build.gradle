@@ -16,12 +16,7 @@ repositories {
 dependencies {
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
-
-    // Spring Context(의존성) 추가
     implementation 'org.springframework:spring-context:6.1.14'
-    implementation 'org.aspectj:aspectjweaver:1.9.22.1'
-
-    // Lombok 추가
     compileOnly 'org.projectlombok:lombok:1.18.34'
 }
 
