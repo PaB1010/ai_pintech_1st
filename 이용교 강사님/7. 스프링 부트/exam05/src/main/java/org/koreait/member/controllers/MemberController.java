@@ -1,63 +1,155 @@
 package org.koreait.member.controllers;
 
-import org.koreait.member.entities.Member;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.koreait.member.services.LoginService;
+import org.koreait.member.validators.JoinValidator;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.Errors;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
 import java.util.List;
-import java.util.stream.IntStream;
 
+@Slf4j // log 변수 생성(Lombok)
 @Controller
 @RequestMapping("/member")
-public class MemberController { // 사용할 path = /member/login, /member/join
+@RequiredArgsConstructor
+public class MemberController {
+
+    private final JoinValidator joinValidator;
+
+    private final LoginService loginService;
 
 
+    /*
+    // 회원 가입 양식
     @GetMapping("/join")
-    public String join (Model model) {
+    public String join(Model model) {
 
-        RequestJoin form = new RequestJoin();
 
-        // Model = Server에서 만든 View에서 사용할 데이터(Attribute)
-        form.setEmail("user01@test.org");
-        form.setPassword("12345678");
-        form.setConfirmPassword("12345678");
-        form.setName("사용자01");
+//         비어있는 requestJoin이라도 있어야 Get방식에서도 join 페이지 접근 가능
+//         joinForm의
+//         <form method="POST" th:action="@{/member/join}" autocomplete="off"
+//                     th:object="${requestJoin}">
+//         여기서 th:ojbect에 requestJoin이 있어야만 하기 때문
+        RequestJoin requestJoin = new RequestJoin();
+        model.addAttribute("requestJoin", requestJoin);
 
-        model.addAttribute("requestJoin", form);
+        return "member/joinForm";
+    }
+    */
 
-        return "member/join";
+    // 속성명 apples, MemberController 내에서 전역 유지
+    @ModelAttribute("apples")
+    public List<String> apples() {
+
+        return List.of("사과1", "사과2", "사과3");
     }
 
+    @GetMapping("/join")
+    public String join(@ModelAttribute RequestJoin form) {
+        // @ModelAttribute = RequestJoin - requestJoin 비어있는 객체 생성
+        // RequestJoin(email=null, password=null, confirmPassword=null, name=null, mobile=null, agree=false)
+
+        return "member/joinForm";
+    }
+
+
+    /**
+     * 회원 가입 처리 - 레코드 클래스
+     * @Valid : 검증할 커맨드 객체임을 표시
+     * @Valid가 있으면 반드시 Errors 객체는 커맨드 객체 바로 다음에 붙어서 나와야함
+     *
+     * @return
+     */
+    // 회원 가입 처리 - 레코드 클래스
     @PostMapping("/join")
-    public String joinPs() {
+    public String joinPs(@Valid RequestJoin form, Errors errors) {
+
+
+        // 커맨드 객체 검증 (전역 Validator 있을시 해당 코드는 없어도 됨)
+        joinValidator.validate(form, errors);
+
+        // 검증 실패! - reject, rejectValue가 한번이라도 호출 됨
+        if (errors.hasErrors()) {
+
+            // 검증 실패시 사용자에게 양식을 다시 보여주고, 검증 실패 정보를 제공해야 함
+            return "member/joinForm";
+        }
+
+        // 검증 성공시 - 가입 처리 서비스 호출
+        return "redirect:/member/login";
+
+        /*
+        @Slf4j - Lombok (로그 레벨 출력)
+
+        log.error(form.toString());
+        log.warn(form.toString());
+        log.info(form.toString());
+        log.debug(form.toString());
+        log.trace(form.toString());
+         */
+
+    }
+
+    @GetMapping("/login")
+    public String login(@ModelAttribute RequestLogin form, @CookieValue(name="savedEmail", required = false) String savedEmail) {
+
+        // @CookieValue = Cookie 단일 조회
+        if (savedEmail != null) { // Cookie 값이 있다면
+            form.setEmail(savedEmail);
+            form.setSaveEmail(true);
+        }
+
+        return "member/login";
+    }
+
+    @PostMapping("/login")
+    public String loginPS(@Valid RequestLogin form, Errors errors /*, HttpServletRequest request, HttpSession session*/ ) {
+        // Session 가져오는 기능 2번
+        // 매개변수에 HttpSession session
+
+        if (errors.hasErrors()) {
+
+            return "member/login";
+        }
+
+        // Session 가져오는 기능 1번
+        // 매개 변수에 HttpServletRequest request 하고 getSession()
+        // HttpSession session = request.getSession();
+
+        // 검증에 이상이 없는 상태 -> Login 처리
+        loginService.process(form);
+        
+        return "redirect:/";
+    }
+
+    // Get, Post 모두 상관없도록 RequestMappin
+    @RequestMapping("/logout")
+    public String logout(HttpSession session) {
+
+        // Session 비우기
+        session.invalidate();
 
         return "redirect:/member/login";
     }
 
-    // 반복문 실습용
-    @GetMapping("/list")
-    public String list(Model model) {
+    /**
+     * MemberController 공통 검증
+     * @Valid가 붙어있는 커맨드 객체 공통 검증 처리
+     *
+     * @param binder
+     */
 
-        List<Member> members = IntStream.rangeClosed(1, 10)
-                .mapToObj(i -> {
-
-                    Member member = new Member();
-                    member.setSeq(i);
-                    member.setEmail("user" + i + "@test.org");;
-                    member.setName("<h1>사용자" + i + "</h1>");
-                    member.setPassword("12345678");
-                    member.setRegDt(LocalDateTime.now());
-                    member.setModDt(LocalDateTime.now());
-
-                    return member;
-                }).toList();
-
-        model.addAttribute("members", members);
-
-        return "member/list";
+    /*
+    @InitBinder
+    public void initBinder(WebDataBinder binder) {
+        binder.setValidator(joinValidator);
     }
+     */
 }
