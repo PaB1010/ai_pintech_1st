@@ -15,7 +15,7 @@ public class MessageSourceConfig {
         ResourceBundleMessageSource ms = new ResourceBundleMessageSource();
         
         // addBasenames 메서드의 매개 변수가 가변형 (...) 이므로 더 필요하면 , 하고 추가 기입하면 됨
-        ms.addBasenames("messages.commons", "messages.validations");
+        ms.addBasenames("messages.commons", "messages.validations", "messages.errors");
 
         // 인코딩 설정을 UTF-8로 고정
         ms.setDefaultEncoding("UTF-8");
