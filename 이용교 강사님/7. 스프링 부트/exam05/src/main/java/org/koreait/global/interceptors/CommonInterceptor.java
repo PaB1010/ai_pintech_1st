@@ -21,9 +21,11 @@ public class CommonInterceptor implements HandlerInterceptor {
      * 처리에는 관여 X, 값만 추가
      *
      */
+    /*
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
 
         modelAndView.addObject("commonMessage", "공통 메세지!");
     }
+     */
 }

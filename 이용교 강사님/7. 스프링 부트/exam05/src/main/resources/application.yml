@@ -2,7 +2,21 @@ server:
   port: 3000
 
 spring:
+  # profiles:
+  #  active: prod
   # 타임리프 설정 - 작업 편의상 캐시 해제
   thymeleaf:
     cache: false
     prefix: file:src/main/resources/templates/
+
+  # File Upload 용량 설정
+  servlet :
+    multipart:
+      maxFileSize: 20MB  # File 하나당 최대 용량
+      maxRequestSize: 60MB  # 한번에 전송할 수 있는 최대 파일 용량
+      fileSizeThreshold: 30MB  # 임시 메모리에 저장할 최대 용량, 넘어서면 임시 디렉토리에 저장
+
+# File Upload 경로
+file:
+  upload.path: ${file.path}
+  upload.url: ${file.url}
