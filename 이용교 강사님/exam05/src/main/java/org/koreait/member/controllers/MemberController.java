@@ -1,17 +1,24 @@
 package org.koreait.member.controllers;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.koreait.global.exceptions.CommonException;
+import org.koreait.global.exceptions.scripts.AlertRedirectException;
+import org.koreait.member.exceptions.MemberNotFoundException;
 import org.koreait.member.services.LoginService;
 import org.koreait.member.validators.JoinValidator;
+import org.springframework.context.MessageSource;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -24,6 +31,8 @@ public class MemberController {
     private final JoinValidator joinValidator;
 
     private final LoginService loginService;
+
+    private final MessageSource messageSource;
 
 
     /*
@@ -99,7 +108,11 @@ public class MemberController {
 
     @GetMapping("/login")
     public String login(@ModelAttribute RequestLogin form, @CookieValue(name="savedEmail", required = false) String savedEmail) {
-
+        /*
+        if (true) {
+            throw new AlertRedirectException("테스트 예외", "/member/join", HttpStatus.BAD_REQUEST);
+        }
+        */
         // @CookieValue = Cookie 단일 조회
         if (savedEmail != null) { // Cookie 값이 있다면
             form.setEmail(savedEmail);
@@ -124,6 +137,7 @@ public class MemberController {
         // HttpSession session = request.getSession();
 
         // 검증에 이상이 없는 상태 -> Login 처리
+
         loginService.process(form);
         
         return "redirect:/";
@@ -152,4 +166,48 @@ public class MemberController {
         binder.setValidator(joinValidator);
     }
      */
+
+    /*
+    // 예외가 발생할 수 있는 Class 클래스 객체를 매개변수에
+    // {배열 형태}로 여러개
+    // @ExceptionHandler({MemberNotFoundException.class, IllegalArgumentException.class})
+    // Exception.class 하면 모든 예외가 포함
+    @ExceptionHandler(Exception.class)
+    // 모든 예외에 적용되도록 매개변수에 다형성 이용한 Exception e 사용
+    public ModelAndView errorHandler(Exception e, Model model, HttpServletRequest request) {
+
+        e.printStackTrace();
+
+        // 기본 응답 코드 = 500
+        HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
+
+        // 기본 메세지
+        String message = e.getMessage();
+
+        // 내가 정의한 예외(CommonException)일 경우 정의한 예외로 대체
+        if (e instanceof CommonException commonException) {
+
+            status = commonException.getStatus();
+            if (commonException.isErrorCode()) {
+
+                message = messageSource.getMessage(message, null, request.getLocale());
+            }
+        }
+
+        // 응답 코드(Enum이니 상수)를 숫자(정수)로 가져옴
+        // response.setStatus(status.value());
+
+        // model.addAttribute("message", e.getMessage());
+        
+        // ModelAndView 객체로 응답 설정
+        ModelAndView mv = new ModelAndView();
+
+        mv.setStatus(status);
+        mv.addObject("message", message);
+        mv.setViewName("error/errorPage");
+
+        return mv;
+    }
+     */
+
 }
