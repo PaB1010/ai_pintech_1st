@@ -57,13 +57,13 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
-/*
+
 // 자동생성될 Querydsl Code 경로 설정
 def querydslDir = layout.buildDirectory.dir("generated/querydsl").get().asFile
 
 // Java 코드에서 접근 가능하게 설정
 sourceSets {
-	main.java.scrDirs += [ querydslDir ]
+	main.java.srcDirs += [ querydslDir ]
 }
 
 // 설정 연결
@@ -72,20 +72,6 @@ tasks.withType(JavaCompile) {
 }
 
 // clean시 Generate도 같이 삭제되도록
-clean.doLast {
-	file(querydslDir).deleteDir()
-}
-*/
-def querydslDir = layout.buildDirectory.dir("generated/querydsl").get().asFile
-
-sourceSets {
-	main.java.srcDirs += [ querydslDir ]
-}
-
-tasks.withType(JavaCompile) {
-	options.getGeneratedSourceOutputDirectory().set(file(querydslDir))
-}
-
 clean.doLast {
 	file(querydslDir).deleteDir()
 }
