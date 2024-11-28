@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.validation.Validator;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -15,8 +16,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 // @EnableWebMvc = 불필요
 // @RequiredArgsConstructor
 @Configuration
-@EnableScheduling
-// 스케쥴링 설정 자동화
+@EnableScheduling // 스케쥴링 설정 자동화
+@EnableJpaAuditing // Entity 변화 감지 Listeners 설정 자동화
 public class MvcConfig implements WebMvcConfigurer {
 
     // 전역 검증용 의존 주입

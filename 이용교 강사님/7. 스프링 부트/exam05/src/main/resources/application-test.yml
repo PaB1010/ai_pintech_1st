@@ -12,5 +12,5 @@ spring:
       ddlAuto: create
 # File Upload 경로
 file:
-  upload.path: D:/uploads/
+  upload.path: E:/[공부]/uploads/exam05/
   upload.url: /uploads/

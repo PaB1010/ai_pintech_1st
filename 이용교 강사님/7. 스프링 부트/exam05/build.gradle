@@ -34,9 +34,15 @@ dependencies {
 	annotationProcessor 'jakarta.persistence:jakarta.persistence=api'
 	runtimeOnly 'com.oracle.database.jdbc:ojdbc11'
 
+	// Querydsl
+	annotationProcessor 'com.querydsl:querydsl-apt:5.1.0:jakarta'
+	implementation 'com.querydsl:querydsl-jpa:5.1.0:jakarta'
+
 	// test DB
 	testImplementation 'com.h2database:h2'
 
+	testImplementation ('com.github.javafaker:javafaker:1.0.2') { exclude module: 'snakeyaml' }
+	testImplementation group: 'org.yaml', name: 'snakeyaml', version: '2.2'
 
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
