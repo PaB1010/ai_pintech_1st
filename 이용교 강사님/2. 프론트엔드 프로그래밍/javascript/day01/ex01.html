@@ -1,0 +1,39 @@
+<!-- html5 선언자 -->
+<!-- script Tag로 JavaScript 사용 (비권장) -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- body 내부 보다 head에 추가 하는 것을 선호 -->
+    <script>
+      // JavaScript가 Script Tag 내부 정의 코드를 한줄 한줄 읽으며 실행
+
+      const buttonEl = document.getElementById("button");
+      // id가 button인 Document 객체를 선택
+
+      console.log(buttonEl);
+      // null -> Document 객체 선택 불가
+      // DOM 구성이 완료(변환) 되지 않아 선택 불가
+      // Document 변환은 코드 순서대로 순차 변환
+
+      window.addEventListener("DOMContentLoaded", function () {
+        // 실행 시점은 DOMContentLoaded Event 실행시
+        // 즉, DOM 구성(변환) 완료 된 상태
+
+        const buttonEl = document.getElementById("button");
+
+        console.log(buttonEl);
+        // 이제 DOM 구성이 완료 되므로 정상적으로 출력
+        // 출력 값은 text/html이 아니라 Document 객체
+      });
+    </script>
+  </head>
+  <body>
+    <button type="button" id="button">클릭</button>
+    <script>
+      // 해당 tag 아래 보다 head에서 script tag 사용 선호
+      const buttonEl2 = document.getElementById("button");
+      // id가 button인 document 객체 변환 완료 후이므로 선택 가능!
+      console.log(buttonEl2);
+    </script>
+  </body>
+</html>
