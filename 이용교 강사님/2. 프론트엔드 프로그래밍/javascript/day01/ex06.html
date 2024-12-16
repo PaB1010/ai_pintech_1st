@@ -1,0 +1,24 @@
+<!-- window 객체 -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <h1>ex06.html</h1>
+    <script>
+      console.log("window", window, "parent", parent, "top", top);
+
+      console.log("window === parent", window === parent);
+      // false
+
+      // top : 가장 상위 창의 window 객체
+      console.log("window === top", window === top);
+      // false
+
+      // 가장 상위 창이 주소 이동
+      top.location.href = "http://webnmobile.net";
+    </script>
+  </body>
+</html>
