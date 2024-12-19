@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <script>
+      window.addEventListener("DOMContentLoaded", function () {
+        const buttonEl = document.getElementById("button");
+
+        // Event Handler 함수
+        buttonEl.onclick = function () {
+          alert("클릭1");
+        };
+
+        buttonEl.onclick = function () {
+          alert("클릭2");
+        };
+        // 클릭2로 Event가 대체되어버림
+      });
+    </script>
+  </head>
+  <body>
+    <button type="button" id="button">클릭</button>
+  </body>
+</html>

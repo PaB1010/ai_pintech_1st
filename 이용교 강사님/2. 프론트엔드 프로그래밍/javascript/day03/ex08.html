@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <button type="button" id="button">클릭</button>
+    <script>
+      const buttonEl = document.getElementById("button");
+
+      const person = {
+        name: "김이름",
+        age: 40,
+
+        // this 범위 명확하게 person
+        handleEvent: function () {
+          console.log("handleEvent", this);
+        },
+      };
+
+      // 객체 그자체를 두번째 인수로 등록 시켜도 handleEvent 실행됨
+      buttonEl.addEventListener("click", person);
+    </script>
+  </body>
+</html>
