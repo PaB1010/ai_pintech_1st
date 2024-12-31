@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <style>
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        height: 100px;
+
+        display: flex;
+        /* flex-direction: row-reverse; */
+
+        /* flex-direction: column; */
+        /* 여기서 height 적용 안되는 이유? */
+
+        flex-direction: column-reverse;
+        /* height 절반 정도만큼 padding이 상단에 생기는 이유 */
+      }
+
+      li {
+        margin: 0;
+        width: 100px;
+      }
+
+      li:nth-of-type(1) {
+        background: lightsteelblue;
+      }
+
+      li:nth-of-type(2) {
+        background: lightseagreen;
+      }
+
+      li:nth-of-type(3) {
+        background: lightgoldenrodyellow;
+      }
+    </style>
+    <ul>
+      <li>메뉴1</li>
+      <li>메뉴2</li>
+      <li>메뉴3</li>
+    </ul>
+  </body>
+</html>
