@@ -1,3 +1,7 @@
 유틸/
 .idea/
 out/
+/gradle-*
+/apache-tomcat-
+/naver_bert
+node_modules/
