@@ -1,17 +1,5 @@
-import { useState, Fragment } from 'react'
+// 함수형 Component
 
-const Counter = () => {
-  const [number, setNumber] = useState<number>(1)
-
-  console.log('렌더링')
-
-  return (
-    <Fragment>
-      <h1>{number}</h1>
-      <button onClick={() => setNumber(number - 1)}>-1</button>
-      <button onClick={() => setNumber(number + 1)}>+1</button>
-    </Fragment>
-  )
-}
+const Counter = () => {}
 
 export default Counter
