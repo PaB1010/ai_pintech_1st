@@ -22,22 +22,28 @@ const ColorBox = (): React.ReactNode => {
 
   const handleClick = (color) => setSelected(color)
 
+  const TypeColor = (border) => setSelected(border)
+
+  console.log('렌더링!', selected)
+
   return (
     <>
       <ColorTabs onClick={handleClick}></ColorTabs>
+      <input onChange={TypeColor} type="text" placeholder="색상을 입력하세요"></input>
       <div
         style={{
           background: selected,
           width: 300,
           height: 300,
-          border: '1px solie #000',
+          border: '10px solid #000',
         }}
       ></div>
     </>
   )
 }
 
-const ColorTabs = ({onClick}) => {
+// 속성에 불과
+const ColorTabs = ({ onClick, onChange }) => {
   const tabStyle = {
     display: 'flex',
     height: 100,
@@ -47,6 +53,7 @@ const ColorTabs = ({onClick}) => {
     <div style={tabStyle}>
       {colors.map((color) => (
         <div
+          onClick={() => onClick(color)}
           key={color}
           style={{ background: color, width: 0, flexGrow: 1 }}
         ></div>
