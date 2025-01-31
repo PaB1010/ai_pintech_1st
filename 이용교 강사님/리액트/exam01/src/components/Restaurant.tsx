@@ -41,5 +41,6 @@ const RestaurantItem = ({ item }): React.ReactNode => {
       <span>{name}</span>
     </li>
   )
+}
 
 export default Restaurant
