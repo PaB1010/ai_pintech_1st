@@ -171,5 +171,5 @@ export const processLogin = async (formState, formData: FormData) => {
     /* 2) Server쪽에 처리 요청 전송 E */
   }
 
-  redirect('/member')
+  redirect('/member/mypage')
 }
