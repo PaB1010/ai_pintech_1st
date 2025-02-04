@@ -1,7 +1,19 @@
 'use client'
 
+import { useRef, useEffect } from 'react'
+
 const LoginForm = ({ actionState, onChange, form }) => {
   const [errors, formAction, isPending] = actionState
+  const emailEl = useRef<HTMLInputElement | undefined>(undefined)
+
+  useEffect(() => {
+    // console.log('emailEl', emailEl)
+
+    if (emailEl) {
+      // console.log('emailEl', emailEl.current)
+      emailEl.current?.focus()
+    }
+  }, [emailEl])
   return (
     <>
       <form action={formAction}>
@@ -9,6 +21,7 @@ const LoginForm = ({ actionState, onChange, form }) => {
           <dt>이메일</dt>
           <dd>
             <input
+              ref={emailEl}
               type="text"
               name="email"
               onChange={onChange}
@@ -33,6 +46,7 @@ const LoginForm = ({ actionState, onChange, form }) => {
         <button type="submit" disabled={isPending}>
           로그인
         </button>
+        {errors?.global && errors.global.map((m) => <div key={m}>{m}</div>)}
       </form>
     </>
   )

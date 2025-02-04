@@ -2,7 +2,15 @@
 
 // header에 Location 추가하는 방식
 import { redirect } from 'next/navigation'
+import { cookies } from 'next/headers'
 
+/**
+ * 회원 가입 처리
+ *
+ * @param formState
+ * @param formData
+ * @returns
+ */
 // Server쪽 Action함수는 항상 비동기 함수여야함!
 export const processJoin = async (formState, formData: FormData) => {
   /**
@@ -75,7 +83,7 @@ export const processJoin = async (formState, formData: FormData) => {
 
   try {
     // fetch
-    const res = await fetch('https://member-service.koreait.xyz/join', {
+    const res = await fetch('https://cis-member-service.koreait.xyz/join', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -109,18 +117,43 @@ export const processJoin = async (formState, formData: FormData) => {
   /* 3) Server 쪽에 처리 요청 E */
 }
 
-export const processLogin = async (formState, formData: FormData) => {
+/**
+ * 로그인 처리
+ *
+ * @param form
+ * @param formData
+ * @returns
+ */
+export const processLogin = async (form, formData: FormData) => {
   /**
    * 1) 필수 항목 검증
    * 2) Server쪽에 처리 요청 전송
    * 2-1) 이상 있을 경우 Error
-   * 3) 이상 없을시 후속 처리 -> 이전 페이지 이동
+   * 3) 이상 없을시 후속 처리 -> 지정된 주소 | 메인 페이지 이동
    */
 
-  let errors = {}
-  let hassErrors = {}
+  const errors = {}
+  let hasErrors = false
 
   /* 1) 필수 항목 검증 S */
+  const email = formData.get('email')
+  const password = formData.get('password')
+
+  if (!email || !email.trim()) {
+    errors.email = errors?.email ?? []
+    errors.email.push('이메일을 입력하세요.')
+    hasErrors = true
+  }
+
+  if (!password || !password.trim()) {
+    errors.password = errors?.password ?? []
+    errors.password.push('비밀번호를 입력하세요.')
+    hasErrors = true
+  }
+
+  if (hasErrors) return errors
+
+  /*
   const requiredFields = {
     email: '이메일을 입력하세요.',
     password: '비밀번호를 입력하세요.',
@@ -134,42 +167,81 @@ export const processLogin = async (formState, formData: FormData) => {
 
       errors[field].push(msg)
     }
-    /* 1) 필수 항목 검증 E */
+  */
 
-    /* 2) Server쪽에 처리 요청 전송 S */
-    const form = {}
+  /* 1) 필수 항목 검증 E */
 
-    for (const [key, value] of formData.entries()) {
-      if (['email', 'password'].includes(key)) {
-        form[key] = value
-      }
+  /* 2) Server쪽에 처리 요청 전송 S */
+  const apiUrl = process.env.API_URL + '/member/login'
+  // const apiUrl = process.env.API_URL + '/member-service/login'
+
+  for (const [key, value] of formData.entries()) {
+    if (['email', 'password'].includes(key)) {
+      form[key] = value
     }
-
-    try {
-      const res = await fetch('https://member-service.koreait.xyz/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(form),
-      })
-
-      if (res.status != 201) {
-        const result = await res.json()
-        if (!result.success) {
-          errors = result.message
-          hassErrors = true
-        }
-      }
-    } catch (err) {
-      console.error(err)
-    }
-
-    if (hassErrors) {
-      return errors
-    }
-    /* 2) Server쪽에 처리 요청 전송 E */
   }
 
-  redirect('/member/mypage')
+  try {
+    const res = await fetch(apiUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email, password }),
+    })
+
+    const result = await res.json()
+
+    if (result.success) {
+      // 성공시
+      const cookie = await cookies()
+      cookie.set('token', result.data, {
+        httpOnly: true,
+        sameSite: 'none',
+        secure: true,
+        path: '/',
+      })
+    } else {
+      // 실패시
+
+      return result.message
+    }
+  } catch (err) {
+    console.error(err)
+  }
+
+  /* 2) Server쪽에 처리 요청 전송 E */
+
+  redirect('/')
+}
+
+/**
+ * 현재 로그인한 사용자 정보 조회
+ *  - token cookie로 Server에 요청
+ *  - Authorization Header
+ */
+export const getUserInfo = async () => {
+  const cookie = await cookies()
+
+  const token = cookie.get('token')
+
+  if (!token || !token.value) return
+
+  try {
+    const apiUrl = process.env.API_URL + '/member'
+    // const apiUrl = process.env.API_URL + '/member-service'
+    const res = await fetch(apiUrl, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${token.value}`,
+      },
+    })
+
+    if (res.status === 200) {
+      const result = await res.json()
+      return result.data
+    }
+  } catch (err) {
+    console.error(err)
+  }
 }
