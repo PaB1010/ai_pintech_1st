@@ -1,0 +1,13 @@
+// 공용 변수 & 함수
+
+$red: red;
+$blue: blue;
+$orange: orange;
+$gray: gray;
+
+// 함수 정의 가능
+@mixin sqaure($size) {
+  $calculated: 50px * $size;
+  width: $calculated;
+  height: $calculated;
+}

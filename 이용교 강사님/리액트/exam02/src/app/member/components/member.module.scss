@@ -1,0 +1,16 @@
+.row {
+  display: flex;
+
+  .title {
+    font-weight: 700;
+    font-size: 2rem;
+    background: white;
+  }
+}
+
+/* 난수가 붙지 않고 className='title'로 사용가능 해짐 */
+// global .title {
+//   font-weight: 700;
+//   font-size: 2rem;
+//   color: pink;
+// }

@@ -2,7 +2,7 @@
 
 import LoginForm from '../components/LoginForm'
 import { processLogin } from '../services/actions'
-import { useActionState, useState } from 'react'
+import React, { useActionState, useState } from 'react'
 
 type FormType = {
   email?: string
@@ -23,4 +23,4 @@ const LoginContainer = () => {
   )
 }
 
-export default LoginContainer
+export default React.memo(LoginContainer)

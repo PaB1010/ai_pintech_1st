@@ -1,0 +1,25 @@
+@import './utils.scss';
+
+// .box-group > .box 와 동일
+.box-group {
+  .box {
+    background: $red;
+    @include sqaure(1);
+
+    // & 상위 요소 자기자신을 의미, .box와 동일
+    &.blue {
+      background: $blue;
+      @include sqaure(2);
+    }
+
+    &.orange {
+      background: $orange;
+      @include sqaure(3);
+    }
+
+    &.gray {
+      background: $gray;
+      @include sqaure(4);
+    }
+  }
+}

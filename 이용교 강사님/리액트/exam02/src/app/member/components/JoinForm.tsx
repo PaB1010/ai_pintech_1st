@@ -1,6 +1,7 @@
 'use client'
 
 import { FaRegSquareCheck, FaSquareCheck } from 'react-icons/fa6'
+import { Button } from '@/app/global/components/StyledButton'
 
 const JoinForm = ({ actionState, onChange, onToggle, form }) => {
   // 1번째 매개변수 = 반환값, 2번째 매개변수 = Server Side로 감싼 함수, 3번째 매개변수=제출시 true됨, action 중복 제출 방지
@@ -67,9 +68,9 @@ const JoinForm = ({ actionState, onChange, onToggle, form }) => {
         </div>
 
         {/* 제출시 isPending=true되고 버튼 비활성화, action 중복 제출 방지 */}
-        <button type="submit" disabled={isPending}>
+        <Button type="submit" disabled={isPending} color="pink">
           가입하기
-        </button>
+        </Button>
       </form>
     </>
   )

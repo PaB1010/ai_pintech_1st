@@ -1,0 +1,15 @@
+$red : red
+$blue : blue
+$orange : orange
+$gray : gray
+
+// .box-group > .box 와 동일
+.box-group
+    .box
+        background : $red
+        width : 300px
+        height : 300px
+
+        // & 상위 요소 자기자신을 의미, .box와 동일
+        &.blue
+            background : $blue
