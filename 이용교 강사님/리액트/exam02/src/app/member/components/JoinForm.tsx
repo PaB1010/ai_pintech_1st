@@ -68,7 +68,7 @@ const JoinForm = ({ actionState, onChange, onToggle, form }) => {
         </div>
 
         {/* 제출시 isPending=true되고 버튼 비활성화, action 중복 제출 방지 */}
-        <Button type="submit" disabled={isPending} color="pink">
+        <Button type="submit" disabled={isPending} color="pink" Border={true}>
           가입하기
         </Button>
       </form>

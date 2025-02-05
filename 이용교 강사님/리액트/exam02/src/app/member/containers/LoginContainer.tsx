@@ -3,6 +3,11 @@
 import LoginForm from '../components/LoginForm'
 import { processLogin } from '../services/actions'
 import React, { useActionState, useState } from 'react'
+import styled from 'styled-components'
+
+const StyledLoginForm = styled(LoginForm)`
+  border : 10px solid orange;
+`
 
 type FormType = {
   email?: string
@@ -19,7 +24,11 @@ const LoginContainer = () => {
   const actionState = useActionState(processLogin, {})
 
   return (
-    <LoginForm actionState={actionState} onChange={handleChange} form={form} />
+    <StyledLoginForm
+      actionState={actionState}
+      onChange={handleChange}
+      form={form}
+    />
   )
 }
 

@@ -6,7 +6,7 @@ import styles from './member.module.scss'
 
 // console.log('styles', styles)
 
-const LoginForm = ({ actionState, onChange, form }) => {
+const LoginForm = ({ actionState, onChange, form, className }) => {
   const [errors, formAction, isPending] = actionState
   const emailEl = useRef<HTMLInputElement | undefined>(undefined)
 
@@ -20,7 +20,7 @@ const LoginForm = ({ actionState, onChange, form }) => {
   }, [emailEl])
   return (
     <>
-      <form action={formAction}>
+      <form action={formAction} className={className}>
         <dl className={styles.row}>
           <dt className={styles.title}>이메일</dt>
           <dd>
