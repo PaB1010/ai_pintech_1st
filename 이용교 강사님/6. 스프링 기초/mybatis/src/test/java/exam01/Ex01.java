@@ -2,6 +2,7 @@ package exam01;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.koreait.board.entities.Board;
 import org.koreait.config.AppCtx;
@@ -28,6 +29,7 @@ public class Ex01 {
     private BoardMapper boardMapper;
 
     @Test
+    @DisplayName("Connection Pool 객체 생성 테스트")
     void test1() {
 
         // System.out.println(sessionFactory);
@@ -53,10 +55,28 @@ public class Ex01 {
     }
 
     @Test
+    @DisplayName("전체 목록 조회 테스트")
     void test2() {
 
         List<Board> items = boardMapper.getList();
 
         items.forEach(System.out::println);
+    }
+
+    @Test
+    @DisplayName("단일 조회 테스트")
+    void test3() {
+
+        Board item = boardMapper.get(5952L);
+
+        System.out.println(item);
+    }
+
+    @Test
+    @DisplayName("매개변수 2개 이상의 조건으로 목록 조회 테스트")
+    void test4() {
+        List<Board> items = boardMapper.getList2("%제목%", "%내용%");
+
+        System.out.println(items);
     }
 }

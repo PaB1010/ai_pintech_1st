@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--    namespace : 현재 경로-->
+<mapper namespace="org.koreait.mapper.BoardMapper">
+
+<!--    created_at과 createdAt을 매핑-->
+    <resultMap type="org.koreait.board.entities.Board" id="boardMap">
+        <result column="SEQ" property="seq" />
+        <result column="POSTER" property="poster" />
+        <result column="SUBJECT" property="subject" />
+        <result column="CONTENT" property="content" />
+        <result column="CREATED_AT" property="createdAt" />
+    </resultMap>
+
+<!--    <select id="getList3" resultType="org.koreait.board.entities.Board">-->
+    <select id="getList3" resultMap="boardMap">
+
+<!--        _parameter = 매개변수로 들어오는 값, 예를들어 board-->
+        <bind name="pattern" value="'%' + _parameter.getSubject() + '%'"/>
+<!--        SELECT * FROM BOARD_DATA WHERE SUBJECT LIKE #{subject}-->
+        SELECT * FROM BOARD_DATA WHERE SUBJECT LIKE #{pattern}
+    </select>
+
+<!--잘못 만든 조건식-->
+<!--    <select id="getList4" resultMap="boardMap">-->
+<!--            SELECT * FROM BOARD_DATA-->
+<!--            WHERE-->
+<!--            <if test="subject != null">-->
+<!--                SUBJECT LIKE #{subject}-->
+<!--            </if>-->
+<!--            <if test="content != null">-->
+<!--                AND CONTENT LIKE #{content}-->
+<!--            </if>-->
+<!--    </select>-->
+
+<!--trim 사용으로 제대로 만든 조건식-->
+<!--    조건식이 있을때에만 조건절 추가-->
+<!--    <select id="getList4" resultMap="boardMap">-->
+<!--        SELECT * FROM BOARD_DATA-->
+<!--        <trim prefix="WHERE" prefixOverrides="AND | OR">-->
+<!--            <if test="subject != null">-->
+<!--                AND SUBJECT LIKE #{subject}-->
+<!--            </if>-->
+<!--            <if test="content != null">-->
+<!--                AND CONTENT LIKE #{content}-->
+<!--            </if>-->
+<!--        </trim>-->
+<!--    </select>-->
+
+<!--    위의 trim 과 동일하게 동작-->
+    <select id="getList4" resultMap="boardMap">
+        SELECT * FROM BOARD_DATA
+        <where>
+            <if test="seq > 0L">
+                <![CDATA[AND seq > 0]]>
+            </if>
+            <if test="subject != null">
+                AND SUBJECT LIKE #{subject}
+            </if>
+            <if test="content != null">
+                AND CONTENT LIKE #{content}
+            </if>
+        </where>
+    </select>
+
+<!--    단일 값만 조회하고싶을때의 resultType-->
+    <select id="total" resultType="long">
+        SELECT COUNT(*) FROM BOARD_DATA
+    </select>
+    <select id="getSubjects" resultType="java.lang.String">
+        SELECT SUBJECT FROM BOARD_DATA
+    </select>
+
+    <!--        INSERT, UPDATE, DELETE 반환값은 반환된 레코드 개수가 정수로-->
+    <insert id="register">
+        <selectKey keyProperty="seq" order="BEFORE" resultType="long">
+            SELECT BOARD_DATA_SEQ.nextval FROM DUAL
+        </selectKey>
+        INSERT INTO BOARD_DATA (SEQ, GID, POSTER, SUBJECT, CONTENT, CREATED_AT, NOTICE, COMMENT_COUNT, RECOMMEND_COUNT, VIEW_COUNT) VALUES (#{seq}, BOARD_DATA_SEQ.nextval, 'testgid', #{poster}, #{subject}, #{content}, SYSDATE, 0, 0, 0, 0)
+    </insert>
+</mapper>
